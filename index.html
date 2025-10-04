@@ -30,6 +30,10 @@
                     if (e.data.vpn) {
                         output.innerHTML += "<p>vpn ip detected</p>"
                     }
+
+                    if (output.innerHTML === "") {
+                        output.innerHTML += "<p>ip is clear</p>"
+                    }
                 });
         });
     </script>

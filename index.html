@@ -14,22 +14,24 @@
     <script>
         const output = document.getElementById("output");
 
-        fetch("https://ipinfo.io/widget/demo/51.158.254.161?dataset=proxy-vpn-detection")
-            .then(e => e.json())
-            .then(e => {
-                if (e.data.hosting) {
-                    output.innerHTML += "<p>Hosting ip detected</p>"
-                }
-                if (e.data.proxy) {
-                    output.innerHTML += "<p>proxy ip detected</p>"
-                }
-                if (e.data.tor) {
-                    output.innerHTML += "<p>tor ip detected</p>"
-                }
-                if (e.data.vpn) {
-                    output.innerHTML += "<p>vpn ip detected</p>"
-                }   
-            });
+        fetch("https://ipinfo.io/json").then(e => e.json()).then(e => {
+            fetch(`https://ipinfo.io/widget/demo/${e.ip}?dataset=proxy-vpn-detection`)
+                .then(e => e.json())
+                .then(e => {
+                    if (e.data.hosting) {
+                        output.innerHTML += "<p>Hosting ip detected</p>"
+                    }
+                    if (e.data.proxy) {
+                        output.innerHTML += "<p>proxy ip detected</p>"
+                    }
+                    if (e.data.tor) {
+                        output.innerHTML += "<p>tor ip detected</p>"
+                    }
+                    if (e.data.vpn) {
+                        output.innerHTML += "<p>vpn ip detected</p>"
+                    }
+                });
+        });
     </script>
 </body>
 

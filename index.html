@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="output">
+
+    </div>
+    <script>
+        const output = document.getElementById("output");
+
+        fetch("https://ipinfo.io/widget/demo/51.158.254.161?dataset=proxy-vpn-detection")
+            .then(e => e.json())
+            .then(e => {
+                if (e.data.hosting) {
+                    output.innerHTML += "<p>Hosting ip detected</p>"
+                }
+                if (e.data.proxy) {
+                    output.innerHTML += "<p>proxy ip detected</p>"
+                }
+                if (e.data.tor) {
+                    output.innerHTML += "<p>tor ip detected</p>"
+                }
+                if (e.data.vpn) {
+                    output.innerHTML += "<p>vpn ip detected</p>"
+                }   
+            });
+    </script>
+</body>
+
+</html>
